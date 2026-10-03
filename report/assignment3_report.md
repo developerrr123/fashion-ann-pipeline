@@ -1,99 +1,123 @@
-# Assignment 3 Report: Git, DVC & TensorFlow
+# Assignment 3: End-to-End ML Versioning
 
 **Student:** Hassan Musa  
-**GitHub repository:** https://github.com/developerrr123/fashion-ann-pipeline  
-**Google Drive DVC remote:** https://drive.google.com/drive/folders/1EAY9q1fuFhy2_hG8ONHvFV5l_vXl6Vpe  
+**GitHub:** https://github.com/developerrr123/fashion-ann-pipeline  
+**DVC Google Drive folder:** https://drive.google.com/drive/folders/1EAY9q1fuFhy2_hG8ONHvFV5l_vXl6Vpe
 
-## 1. Project and target
+## 1. Project Summary
 
-This project uses Fashion-MNIST and a fully connected ANN. The target is at least 85% test accuracy. The complete pipeline is reproducible with `dvc repro`.
+This project builds a fully connected TensorFlow ANN for Fashion-MNIST. The pipeline is split into four independent stages: downloading raw data, preprocessing it, training the ANN, and evaluating the trained model. DVC tracks the data, model, metrics, and pipeline state; Git tracks the code and configuration.
 
-## 2. Git evidence
+The final model exceeded the required 85% test accuracy. The final merged run reached **88.36%** accuracy. A later cached reproduction reported **88.31%** accuracy and **0.32904** test loss.
 
-Capture and paste terminal output or screenshots for:
+## 2. Git Evidence
 
-- `git log --oneline --graph --all`: compact graph of all branches and commit relationships.
-- `git log --stat -3`: the latest three commits plus changed-file statistics.
-- `git log -p -1`: the latest commit's exact patch.
-- `git log main..dev`: commits reachable from `dev` but not `main`.
-- `git diff`: unstaged changes.
-- `git diff --staged`: staged changes.
-- `git diff main..dev`: differences between the two branch tips.
-- `git diff main...dev`: differences from the common ancestor to `dev`; this is useful for reviewing what `dev` introduced regardless of changes on `main`.
-- `git stash list` before `git stash pop`, showing the `preprocess.py` pause/resume scenario.
-- Before and after `git rebase main`.
-- `git reset --soft HEAD~1`: changes remain staged; `git reset --hard HEAD~1`: commit and working-tree changes are discarded.
-- `git mv` and `git rm` commit history.
+The repository contains an unsquashed history on `main` and `dev`. The Git history shows the initial project, DVC setup, separate pipeline-stage commits, the hotfix/rebase exercise, reset demonstration, file reorganization, v1/v2 experiments, and the simulated conflict merge.
 
-## 3. Pipeline implementation
+![Git graph](Capture1.PNG)
 
-The four scripts are independent command-line programs:
+![Additional Git graph](Capture2.PNG)
+
+![Hotfix and DVC history](Capture3.PNG)
+
+![Recent commit statistics](Capture4.PNG)
+
+`git log --stat -3` shows the latest commits and the files changed by each. `git log -p -1` shows the exact patch for the latest commit. The two-dot comparison (`git diff main..dev`) compares the branch tips, while the three-dot comparison (`git diff main...dev`) compares `dev` with the common ancestor.
+
+![Git patch and branch comparisons](Capture5.PNG)
+
+The stash exercise paused an edit to `src/preprocess.py`, switched branches, displayed the stash with `git stash list`, and restored it with `git stash pop`. The reset exercise was performed on a temporary branch: `--soft` left changes staged, while `--hard` removed the commit and working-tree changes. The `git mv` and `git rm` operations are visible in the commit history as the move to `docs/pipeline_notes.md` and removal of `obsolete_scratch.txt`.
+
+![Stash workflow](Capture7.PNG.jpg)
+
+## 3. ML Pipeline and DVC Evidence
+
+The pipeline is defined in `dvc.yaml` and uses `params.yaml` as its single source of hyperparameters. The stages are:
 
 ```text
 prepare -> preprocess -> train -> evaluate
 ```
 
-Run the final pipeline and record:
+The DVC remote is configured as a Google Drive remote. The credentials were stored locally and excluded from Git. The ignore checks confirm that `.dvc/tmp`, `.dvc/cache`, generated data, models, and credentials are not committed.
 
-```powershell
-dvc repro
+![DVC configuration and ignore checks](Capture10.PNG.jpg)
+
+The final reproduction output showed cached stages, followed by:
+
+```text
 dvc metrics show
+metrics.json  0.8831  0.32904
+
 dvc status
+Data and pipelines are up to date.
 ```
 
-Attach the resulting `metrics.json` and confusion matrix screenshot. Confirm test accuracy is at least 0.85.
+![DVC reproduction, metrics, and clean status](Capture8.PNG.jpg)
 
-## 4. DVC and Google Drive evidence
+The successful upload reported:
 
-Record the commands and screenshots for `dvc init`, remote configuration, OAuth authorization, `dvc push`, and the Google Drive folder showing the uploaded cache. Confirm `.dvc/tmp` and credentials are excluded by `.gitignore`.
+```text
+8 files pushed
+```
 
-## 5. Parameter reproduction experiment
+![DVC push result](Capture10.PNG.jpg)
 
-Change one value in `params.yaml`, for example `train.dense_units`, then run `dvc repro` again. Expected behavior: `train` and `evaluate` rerun because the training parameter changed; `prepare` and `preprocess` are skipped because their dependencies and parameters did not change.
+The Google Drive folder was used as the DVC remote and should be shared with the instructor for submission verification. No OAuth client secret is included in this report.
 
-Record v1 and v2 values:
+## 4. Parameter Reproduction Experiment
+
+For v1, the hidden dense layer used 256 units. For v2, only `train.dense_units` changed to 384. DVC skipped `prepare` and `preprocess` because their dependencies and parameters were unchanged. It reran `train` and `evaluate` because both depended on the changed training parameter.
 
 | Version | Dense units | Test loss | Test accuracy |
 |---|---:|---:|---:|
 | v1 | 256 | 0.3390 | 0.8799 |
 | v2 | 384 | 0.3290 | 0.8831 |
 
-The v2 change modified only `train.dense_units`. DVC skipped `prepare` and
-`preprocess` because their dependencies and parameters were unchanged; it
-reran `train` and `evaluate` because the model and metric depended on the
-changed training parameter.
+![Parameter and DVC results](Capture8.PNG.jpg)
 
-## 6. Conflict simulation
+## 5. Conflict Simulation and Resolution
 
+<<<<<<< HEAD
 Record screenshots showing both conflicts. The local command outputs are also
 captured by `report/generate_evidence.ps1` under `report/evidence/`:
+=======
+Two branches independently changed the normalization code and the processed data pointer. Merging `teammate-sim` into `main` produced conflicts in both `src/preprocess.py` and `data/processed.dvc`. The main branch normalization and pointer were selected as authoritative. After resolving the files, `dvc checkout` synchronized the workspace, `dvc repro` reproduced the affected stages, and `dvc status` reported a clean state.
+>>>>>>> dev
 
-1. `preprocess.py` normalization conflict after merging `teammate-sim`.
-2. The processed-data DVC pointer conflict.
+The resolution was committed with:
 
-After resolving, record:
-
-```powershell
-dvc checkout
-dvc status
-dvc repro
-git add src/preprocess.py data/processed.dvc dvc.lock
-git commit -m "Resolve code and DVC data conflicts"
-git push origin main
- dvc push
+```text
+Resolve code and DVC data conflicts
 ```
 
+<<<<<<< HEAD
 In this run, the merge contained conflicts in both `src/preprocess.py` and
 `data/processed.dvc`. The main branch's `** 0.8` normalization and pointer
 hash were selected as authoritative. `dvc checkout` synchronized the pointer,
 and the merged pipeline reproduced successfully with final test accuracy
 `0.8836`; `dvc status` then reported a clean workspace.
+=======
+The final conflict-resolution result and branch relationships are visible in the Git history captures. The complete command evidence is also stored under `report/evidence/`.
+>>>>>>> dev
 
-## 7. Final submission checklist
+![Conflict-related Git history](Capture1.PNG)
 
+<<<<<<< HEAD
 - [x] Local Git repository with unsquashed history and more than six incremental `dev` commits.
 - [ ] Google Drive DVC remote shared with the instructor.
 - [x] Final `dvc.lock` committed.
 - [x] `v1` and `v2` tags created and pushed.
 - [ ] PDF report exported from this document with screenshots and command output.
 - [x] Final test accuracy meets the 85% target (`0.8836`).
+=======
+## 6. Final Deliverables
+
+- GitHub repository with full unsquashed history: complete.
+- Google Drive DVC remote and successful `dvc push`: complete.
+- `dvc.lock` committed at the final repository state: complete.
+- v1 and v2 tags pushed to GitHub: complete.
+- Final accuracy above 85%: complete.
+- This report contains the written explanation, results, screenshots, and submission links.
+
+The project was validated with three passing tests, a clean DVC status, and a successful GitHub push of `main`, `dev`, `v1`, and `v2`.
+>>>>>>> dev
