@@ -55,8 +55,13 @@ Record v1 and v2 values:
 
 | Version | Dense units | Test loss | Test accuracy |
 |---|---:|---:|---:|
-| v1 | TODO | TODO | TODO |
-| v2 | TODO | TODO | TODO |
+| v1 | 256 | 0.3390 | 0.8799 |
+| v2 | 384 | 0.3290 | 0.8831 |
+
+The v2 change modified only `train.dense_units`. DVC skipped `prepare` and
+`preprocess` because their dependencies and parameters were unchanged; it
+reran `train` and `evaluate` because the model and metric depended on the
+changed training parameter.
 
 ## 6. Conflict simulation
 
