@@ -27,3 +27,4 @@ gdrive-user-credentials.json
 !metrics.json
 !.vscode/*.json
 .vscode/
+/metrics.json
