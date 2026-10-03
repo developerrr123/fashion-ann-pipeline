@@ -1,0 +1,29 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# DVC cache and local credentials
+.dvc/cache/
+.dvc/tmp/
+.dvc/config.local
+
+# Generated ML artifacts managed by DVC
+*.h5
+*.keras
+data/raw/
+data/processed/
+models/
+reports/confusion_matrix.png
+
+# Local credential/configuration JSON files
+gdrive-user-credentials.json
+
+# Local secrets and editor files
+.env
+*.json
+!metrics.json
+!.vscode/*.json
+.vscode/
