@@ -1,0 +1,6 @@
+outs:
+- md5: 0b8dfed69f537464b78c85199d8d37e1.dir
+  size: 56
+  nfiles: 1
+  hash: md5
+  path: processed_snapshot
