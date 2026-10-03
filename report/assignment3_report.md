@@ -65,7 +65,8 @@ changed training parameter.
 
 ## 6. Conflict simulation
 
-Record screenshots showing both conflicts:
+Record screenshots showing both conflicts. The local command outputs are also
+captured by `report/generate_evidence.ps1` under `report/evidence/`:
 
 1. `preprocess.py` normalization conflict after merging `teammate-sim`.
 2. The processed-data DVC pointer conflict.
@@ -90,9 +91,9 @@ and the merged pipeline reproduced successfully with final test accuracy
 
 ## 7. Final submission checklist
 
-- [ ] GitHub repository link with unsquashed history and at least six incremental `dev` commits.
+- [x] Local Git repository with unsquashed history and more than six incremental `dev` commits.
 - [ ] Google Drive DVC remote shared with the instructor.
-- [ ] Final `dvc.lock` committed.
-- [ ] `v1` and `v2` tags created and pushed.
+- [x] Final `dvc.lock` committed.
+- [x] `v1` and `v2` tags created locally; push them with the GitHub repository.
 - [ ] PDF report exported from this document with screenshots and command output.
 - [x] Final test accuracy meets the 85% target (`0.8836`).

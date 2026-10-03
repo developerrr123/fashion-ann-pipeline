@@ -1,0 +1,10 @@
+﻿dvc : Could not find platform independent libraries <prefix>
+At C:\Users\Hassan Musa\Assignment#2-MLOPS\report\generate_evidence.ps1:12 char:27
++     'dvc-metrics.txt' = { dvc metrics show }
++                           ~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Could not find ...raries <prefix>:String) [], RemoteEx 
+   ception
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Path          test_accuracy    test_loss
+metrics.json  0.8836           0.33177

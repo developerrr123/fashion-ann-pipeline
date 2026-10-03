@@ -1,0 +1,26 @@
+﻿commit cbc5197b250d3201acd96ef4c35e6f4c844e5971
+Merge: f9119fb 4551c85
+Author: Hassan Musa <hassanmusa08114@gmail.com>
+Date:   Sat Oct 3 17:33:04 2026 +0500
+
+    Resolve code and DVC data conflicts
+
+commit f9119fb3647c2da1407a33b1376f6b2e78c001ef
+Author: Hassan Musa <hassanmusa08114@gmail.com>
+Date:   Sat Oct 3 17:21:54 2026 +0500
+
+    Simulate main normalization and data update
+
+ data/processed.dvc | 4 ++--
+ src/preprocess.py  | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+commit 4551c85e14425f20997a84d9b362866aada4616c
+Author: Hassan Musa <hassanmusa08114@gmail.com>
+Date:   Sat Oct 3 17:21:20 2026 +0500
+
+    Simulate teammate normalization and data update
+
+ data/processed.dvc | 4 ++--
+ src/preprocess.py  | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)

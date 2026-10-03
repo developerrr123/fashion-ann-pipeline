@@ -1,0 +1,9 @@
+﻿dvc : Could not find platform independent libraries <prefix>
+At C:\Users\Hassan Musa\Assignment#2-MLOPS\report\generate_evidence.ps1:13 char:26
++     'dvc-status.txt' = { dvc status }
++                          ~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Could not find ...raries <prefix>:String) [], RemoteEx 
+   ception
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Data and pipelines are up to date.

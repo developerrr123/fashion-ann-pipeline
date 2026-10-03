@@ -1,0 +1,37 @@
+﻿*   cbc5197 (HEAD -> main) Resolve code and DVC data conflicts
+|\  
+| * 4551c85 (teammate-sim) Simulate teammate normalization and data update
+* | f9119fb Simulate main normalization and data update
+|/  
+* 0fe8107 Add baseline processed data pointer
+*   4f0d40d Merge Fashion ANN pipeline v2
+|\  
+| * b38196e (dev) Reorganize notes and remove obsolete scratch
+| * 62de1f8 Add temporary reorganization fixtures
+| * 73dd0c0 Record v2 hyperparameter experiment
+| * 06ec642 Record reproducible v1 pipeline
+| * 7221edf Use headless backend for evaluation
+| * afaec34 Define DVC pipeline and assignment report
+| * 0bb1e03 Add evaluation and confusion matrix stage
+| * 4c27360 Add parameterized ANN training stage
+| * 6a85b5f Add deterministic preprocessing stage
+| * d4d4298 Add Fashion MNIST preparation stage
+| * 7e42c25 Add pipeline hyperparameters
+| * 1bcfe56 Initialize DVC tracking
+|/  
+*   0f16e59 Merge README hotfix
+|\  
+| * 82b516f (hotfix) Fix README project title
+|/  
+| * 084c727 (tag: v2) Record v2 hyperparameter experiment
+| * 796efa3 (tag: v1) Record reproducible v1 pipeline
+| * dcb439b Use headless backend for evaluation
+| * c6bdde4 Define DVC pipeline and assignment report
+| * 75f42c3 Add evaluation and confusion matrix stage
+| * b654baa Add parameterized ANN training stage
+| * 38090d3 Add deterministic preprocessing stage
+| * f1e6928 Add Fashion MNIST preparation stage
+| * 3ff2773 Add pipeline hyperparameters
+| * f06cc77 Initialize DVC tracking
+|/  
+* 8ab5358 Initialize Fashion ANN project
