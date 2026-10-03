@@ -1,0 +1,1 @@
+Pipeline stages are defined in dvc.yaml.
