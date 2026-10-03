@@ -1,8 +1,8 @@
 # Assignment 3 Report: Git, DVC & TensorFlow
 
 **Student:** Hassan Musa  
-**GitHub repository:** TODO  
-**Google Drive DVC remote:** TODO  
+**GitHub repository:** https://github.com/developerrr123/fashion-ann-pipeline  
+**Google Drive DVC remote:** https://drive.google.com/drive/folders/1EAY9q1fuFhy2_hG8ONHvFV5l_vXl6Vpe  
 
 ## 1. Project and target
 
@@ -94,6 +94,6 @@ and the merged pipeline reproduced successfully with final test accuracy
 - [x] Local Git repository with unsquashed history and more than six incremental `dev` commits.
 - [ ] Google Drive DVC remote shared with the instructor.
 - [x] Final `dvc.lock` committed.
-- [x] `v1` and `v2` tags created locally; push them with the GitHub repository.
+- [x] `v1` and `v2` tags created and pushed.
 - [ ] PDF report exported from this document with screenshots and command output.
 - [x] Final test accuracy meets the 85% target (`0.8836`).
