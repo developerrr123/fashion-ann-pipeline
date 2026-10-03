@@ -1,6 +1,6 @@
 # Assignment 3 Report: Git, DVC & TensorFlow
 
-**Student:** TODO  
+**Student:** Hassan Musa  
 **GitHub repository:** TODO  
 **Google Drive DVC remote:** TODO  
 
