@@ -18,8 +18,8 @@ def main() -> None:
 
     train = np.load(RAW_DIR / "train.npz")
     test = np.load(RAW_DIR / "test.npz")
-    x_train = train["images"].astype("float32") / 255.0
-    x_test = test["images"].astype("float32") / 255.0
+    x_train = (train["images"].astype("float32") / 255.0) ** 0.8
+    x_test = (test["images"].astype("float32") / 255.0) ** 0.8
     y_train = train["labels"]
     y_test = test["labels"]
     x_train, x_val, y_train, y_val = train_test_split(
