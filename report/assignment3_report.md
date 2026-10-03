@@ -82,7 +82,11 @@ git push origin main
  dvc push
 ```
 
-Explain which normalization and processed-data version became authoritative, and why the final `dvc status` is clean.
+In this run, the merge contained conflicts in both `src/preprocess.py` and
+`data/processed.dvc`. The main branch's `** 0.8` normalization and pointer
+hash were selected as authoritative. `dvc checkout` synchronized the pointer,
+and the merged pipeline reproduced successfully with final test accuracy
+`0.8836`; `dvc status` then reported a clean workspace.
 
 ## 7. Final submission checklist
 
@@ -91,4 +95,4 @@ Explain which normalization and processed-data version became authoritative, and
 - [ ] Final `dvc.lock` committed.
 - [ ] `v1` and `v2` tags created and pushed.
 - [ ] PDF report exported from this document with screenshots and command output.
-- [ ] Final test accuracy meets the 85% target.
+- [x] Final test accuracy meets the 85% target (`0.8836`).
